@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">City trivia</string>
+    <string name="question">Question lads</string>
+    <string name="button_1">Answer 1</string>
+    <string name="button_2">Answer 2</string>
+    <string name="button_3">Answer 3</string>
+    <string name="button_4">Answer 4</string>
+    <string name="answer_status"></string>
+    <string name="reset">Reset</string>
+</resources>
