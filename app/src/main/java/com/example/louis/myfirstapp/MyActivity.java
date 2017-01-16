@@ -99,7 +99,7 @@ public class MyActivity extends AppCompatActivity {
         } else {
             new AlertDialog.Builder(this)
                 .setTitle("Incorrect!")
-                .setMessage("The capital is " + s[num].substring(s[num].indexOf('-') + 2).trim())
+                .setMessage("The capital is " + s[num].substring(s[num].indexOf(':') + 2).trim())
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // continue with delete
