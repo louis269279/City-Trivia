@@ -18,7 +18,6 @@ Belgium : Brussels
 Belize : Belmopan
 Benin : Porto-Novo
 Bhutan : Thimphu
-Bolivia : La Paz (administrative), Sucre (judicial)
 Bosnia and Herzegovina : Sarajevo
 Botswana : Gaborone
 Brazil : Brasilia
@@ -158,7 +157,6 @@ Slovakia : Bratislava
 Slovenia : Ljubljana
 Solomon Islands : Honiara
 Somalia : Mogadishu
-South Africa : Pretoria (administrative), Cape Town (legislative), Bloemfontein (judicial)
 South Korea : Seoul
 South Sudan : Juba
 Spain : Madrid

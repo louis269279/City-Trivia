@@ -18,11 +18,15 @@ import java.util.Random;
 
 public class MyActivity extends AppCompatActivity {
 
-    String[] s = new String[193];
-    static int num;
+    static final int NUM_QUESTIONS = 195;
+
+    String[] s = new String[NUM_QUESTIONS];
+    int[] freq = new int[NUM_QUESTIONS];
+
+    static int num = 0; // current question id
     static int correct = 0;
     static int qAsked = 0;
-    static int ans = 0;
+    static int ans = 0; // id of button with correct answer
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +121,12 @@ public class MyActivity extends AppCompatActivity {
 
         Random r = new Random();
         int prev = num;
-        while (s[num] == null || prev == num) num = r.nextInt(193);
-        String country = s[num].substring(0, s[num].indexOf('-') - 1);
+        while (prev == num || freq[num] >= minFreq() + 2) num = r.nextInt(NUM_QUESTIONS);
+        String country = s[num].substring(0, s[num].indexOf(':') - 1);
         String questionString = "What is the capital city of " + country + "?";
         question.setText(questionString);
+        freq[num]++;
+
 
         TextView answers[]  = new TextView[4];
         answers[0] = (TextView) findViewById(R.id.answer1);
@@ -138,19 +144,19 @@ public class MyActivity extends AppCompatActivity {
         numbers.add(num);
 
         // setting text of answer buttons
-        answers[chosen].setText(s[num].substring(s[num].indexOf('-') + 2).trim());
+        answers[chosen].setText(s[num].substring(s[num].indexOf(':') + 2).trim());
         ans = answers[chosen].getId();
         int curr = -1;
-        int random = r.nextInt(193);
+        int random = r.nextInt(NUM_QUESTIONS);
         while (numbers.size() != 4) {
             curr++; if (chosen == curr) curr++;
-            while (numbers.contains(random) || s[random] == null) random = r.nextInt(193);
+            while (numbers.contains(random)) random = r.nextInt(NUM_QUESTIONS);
             if (numbers.size() == 1) {
-                answers[curr].setText(s[random].substring(s[random].indexOf('-') + 2).trim());
+                answers[curr].setText(s[random].substring(s[random].indexOf(':') + 2).trim());
             } else if (numbers.size() == 2) {
-                answers[curr].setText(s[random].substring(s[random].indexOf('-') + 2).trim());
+                answers[curr].setText(s[random].substring(s[random].indexOf(':') + 2).trim());
             } else if (numbers.size() == 3) {
-                answers[curr].setText(s[random].substring(s[random].indexOf('-') + 2).trim());
+                answers[curr].setText(s[random].substring(s[random].indexOf(':') + 2).trim());
             }
             numbers.add(random);
         }
@@ -164,5 +170,13 @@ public class MyActivity extends AppCompatActivity {
         answers[1].setEnabled(true);
         answers[2].setEnabled(true);
         answers[3].setEnabled(true);
+    }
+
+    int minFreq() {
+        int minFreq = 2000000;
+        for (int i = 0; i < NUM_QUESTIONS; i++) {
+            minFreq = Math.min(freq[i], minFreq);
+        }
+        return minFreq;
     }
 }
